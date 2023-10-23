@@ -1,0 +1,7 @@
+<div id="categories">
+    <div class="flex flex-col">
+        {{ range . }}
+            {{ template "category.html" . }}
+        {{end}}
+    </div>
+</div>

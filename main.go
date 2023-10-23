@@ -15,7 +15,7 @@ func hello(w http.ResponseWriter, req *http.Request) {
 
 func budget(w http.ResponseWriter, req *http.Request) {
     tmpl := template.Must(template.ParseFiles("templates/budget.html"))
-    tmpl.Execute(w, nil)
+    tmpl.Execute(w, data)
 }
 
 func main() {
