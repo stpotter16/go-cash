@@ -1,6 +1,6 @@
 <div id="categories">
     <div class="flex flex-col">
-        {{ range . }}
+        {{ range .Categories}}
             {{ template "category.html" . }}
         {{end}}
     </div>

@@ -1,6 +1,12 @@
 package main
 
-var data []Category
+var data Budget
+
+type Budget struct {
+    ID string
+    Name string
+    Categories []Category
+}
 
 type Category struct {
     ID string
@@ -8,7 +14,7 @@ type Category struct {
 }
 
 func init() {
-    data = []Category{
+    categories := []Category{
         {
             ID: "1",
             Name: "Income",
@@ -17,5 +23,10 @@ func init() {
             ID: "2",
             Name: "Housing",
         },
+    }
+    data = Budget{
+        ID: "1",
+        Name: "October",
+        Categories: categories,
     }
 }
