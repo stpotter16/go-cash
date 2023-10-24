@@ -9,11 +9,17 @@
     </head>
     <body>
         <main>
-            <div id="budget-{{.ID}}" class="md:container md:mx-auto">
-                <h1 class="text-3xl">{{.Name}}</h1>
-                <br/>
-                <span class="text-xl">Budget items</span>
-                <div>{{ template "categories.html" . }}</div>
+            <div class="flex">
+                <div id="side-nav" class="fixed top-0 left-0 h-screen w-16 m-0 flex flex-col">
+                    <i>A</i>
+                    <i>B</i>
+                    <i>C</i>
+                </div>
+                <div id="budget-{{.ID}}" class="md:container md:mx-auto bg-gray-50">
+                    <h1 class="text-3xl">{{.Name}}</h1>
+                    <br/>
+                    <div>{{ template "categories.html" . }}</div>
+                </div>
             </div>
         </main>
     </body>

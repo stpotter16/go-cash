@@ -534,8 +534,32 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.fixed {
+  position: fixed;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.m-0 {
+  margin: 0px;
+}
+
 .flex {
   display: flex;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.w-16 {
+  width: 4rem;
 }
 
 .flex-col {
@@ -544,6 +568,11 @@ video {
 
 .border-b {
   border-bottom-width: 1px;
+}
+
+.bg-gray-50 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
 .text-3xl {
