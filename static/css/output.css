@@ -585,11 +585,6 @@ video {
   line-height: 1.75rem;
 }
 
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-
 @media (min-width: 768px) {
   .md\:container {
     width: 100%;
