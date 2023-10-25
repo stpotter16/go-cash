@@ -1,3 +1,8 @@
-<div id="category-{{.ID}}" class="border-b"/>
+<div id="category-{{.ID}}" class="my-4 bg-white shadow"/>
     <span class="text-lg">{{.Name}}</span>
+    <div class="flex flex-col">
+        {{ range .Items}}
+            {{ template "budget_item.html" . }}
+        {{end}}
+    </div>
 </div>
