@@ -8,15 +8,17 @@
         <title>Cashflow</title>
     </head>
     <body>
-        <main>
+        <main class="bg-gray-50">
             <div class="flex">
-                <div id="side-nav" class="fixed top-0 left-0 h-screen w-16 m-0 flex flex-col">
+                <div id="side-nav" class="fixed top-0 left-0 h-screen w-16 m-0 flex flex-col bg-white">
                     <i>A</i>
                     <i>B</i>
                     <i>C</i>
                 </div>
-                <div id="budget-{{.ID}}" class="md:container md:mx-auto bg-gray-50">
-                    <h1 class="text-3xl">{{.Name}}</h1>
+                <div id="budget-{{.ID}}" class="md:container md:mx-auto my-4">
+                    <div class="border-b">
+                        <h1 class="text-3xl">{{.Name}}</h1>
+                    </div>
                     <br/>
                     <div>{{ template "categories.html" . }}</div>
                 </div>
