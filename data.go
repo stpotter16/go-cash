@@ -24,13 +24,13 @@ type BudgetItem struct {
 func init() {
     income := []BudgetItem{
         {
-            ID: "1",
+            ID: "BI1",
             Name: "Paycheck 1",
             Amount: 10000,
             Remaining: 0,
         },
         {
-            ID: "2",
+            ID: "BI2",
             Name: "Paycheck 2",
             Amount: 10000,
             Remaining: 0,
@@ -39,7 +39,7 @@ func init() {
 
     housing := []BudgetItem{
         {
-            ID: "1",
+            ID: "BI1",
             Name: "Mortgage",
             Amount: 3000,
             Remaining: 3000,
@@ -48,19 +48,19 @@ func init() {
 
     categories := []Category{
         {
-            ID: "1",
+            ID: "C1",
             Name: "Income",
             Items: income,
         },
         {
-            ID: "2",
+            ID: "C2",
             Name: "Housing",
             Items: housing,
         },
     }
 
     data = Budget{
-        ID: "1",
+        ID: "B1",
         Name: "October",
         Categories: categories,
     }
