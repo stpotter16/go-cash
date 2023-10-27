@@ -1,8 +1,8 @@
 <div id="category-{{.ID}}" class="my-4 bg-white shadow"/>
     <div class="grid grid-cols-3 justify-items-center mb-4">
-        <span class="text-lg">{{.Name}}</span>
-        <span class="text-lg">Planned</span>
-        <span class="text-lg">Remaining</span>
+        <span class="text-lg text-gray-400">{{.Name}}</span>
+        <span class="text-lg text-gray-400">Planned</span>
+        <span class="text-lg text-gray-400">Remaining</span>
     </div>
     <div class="flex flex-col space-y-4"> {{ range .Items}}
             {{ template "budget_item.html" . }}

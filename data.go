@@ -18,6 +18,7 @@ type BudgetItem struct {
     ID string
     Name string
     Amount float64
+    Remaining float64
 }
 
 func init() {
@@ -26,11 +27,13 @@ func init() {
             ID: "1",
             Name: "Paycheck 1",
             Amount: 10000,
+            Remaining: 0,
         },
         {
             ID: "2",
             Name: "Paycheck 2",
             Amount: 10000,
+            Remaining: 0,
         },
     }
 
@@ -39,6 +42,7 @@ func init() {
             ID: "1",
             Name: "Mortgage",
             Amount: 3000,
+            Remaining: 3000,
         },
     }
 
