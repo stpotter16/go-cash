@@ -8,7 +8,7 @@
             {{ template "budget_item.html" . }}
         {{end}}
     </div>
-    <div class="mt-4">
-        <a href="/budget/{{$.ID}}/category/{{.ID}}/item/new" class="text-blue-400">Add item</a>
+    <div class="grid grid-cols-3 justify-items-center my-4">
+        <a href="/budget/{{.BudgetID}}/category/{{.ID}}/item/new" class="text-blue-400">Add item</a>
     </div>
 </div>

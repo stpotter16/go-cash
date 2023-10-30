@@ -12,6 +12,7 @@ type Category struct {
     ID string
     Name string
     Items []BudgetItem
+    BudgetID string
 }
 
 type BudgetItem struct {
@@ -19,6 +20,7 @@ type BudgetItem struct {
     Name string
     Amount float64
     Remaining float64
+    BudgetID string
 }
 
 func init() {
@@ -28,12 +30,14 @@ func init() {
             Name: "Paycheck 1",
             Amount: 10000,
             Remaining: 0,
+            BudgetID: "B1",
         },
         {
             ID: "BI2",
             Name: "Paycheck 2",
             Amount: 10000,
             Remaining: 0,
+            BudgetID: "B1",
         },
     }
 
@@ -43,6 +47,7 @@ func init() {
             Name: "Mortgage",
             Amount: 3000,
             Remaining: 3000,
+            BudgetID: "B1",
         },
     }
 
@@ -51,11 +56,13 @@ func init() {
             ID: "C1",
             Name: "Income",
             Items: income,
+            BudgetID: "B1",
         },
         {
             ID: "C2",
             Name: "Housing",
             Items: housing,
+            BudgetID: "B1",
         },
     }
 
