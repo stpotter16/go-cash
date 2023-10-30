@@ -5,16 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatable" content="ie=edge"/>
         <link href="/static/css/output.css" rel="stylesheet"/>
+        <script src="https://kit.fontawesome.com/7e4768849f.js" crossorigin="anonymous"></script>
         <title>Cashflow</title>
     </head>
     <body>
         <main class="bg-gray-50">
             <div class="flex">
-                <div id="side-nav" class="fixed top-0 left-0 h-screen w-16 m-0 flex flex-col bg-white">
-                    <i>A</i>
-                    <i>B</i>
-                    <i>C</i>
-                </div>
+                {{ template "nav.html" . }}
                 <div id="budget-{{.ID}}" class="md:container md:mx-auto my-4 h-screen">
                     <div class="border-b">
                         <h1 class="text-3xl">{{.Name}}</h1>
