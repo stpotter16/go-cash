@@ -12,11 +12,17 @@ type route struct {
 }
 
 var routes = []route{
-    newRoute("GET", "/buget/([^/]+)", budget),
+    newRoute("GET", "/static/css/output.css", serveCSS),
+    newRoute("GET", "/budget/([^/]+)", budget),
 }
 
 func newRoute(method, pattern string, handler http.HandlerFunc) route {
     return route{method, regexp.MustCompile(pattern), handler}
+}
+
+func serveCSS (w http.ResponseWriter, req *http.Request) {
+    handler := http.FileServer(http.FS(css))
+    handler.ServeHTTP(w, req)
 }
 
 

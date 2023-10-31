@@ -1,9 +1,10 @@
 package main
 
 import (
-    "context"
+	"context"
+	"log"
 	"net/http"
-    "strings"
+	"strings"
 )
 
 var router Router
@@ -13,6 +14,7 @@ type Router struct {
 }
 
 func (m Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+    log.Printf("%s: %s",r.Method, r.URL.Path)
     var allow []string
     for _, route := range routes {
         matches := route.regex.FindStringSubmatch(r.URL.Path)
