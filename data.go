@@ -1,74 +1,69 @@
 package main
 
-var data Budget
-
 type Budget struct {
-    ID string
-    Name string
-    Categories []Category
+	ID         string
+	Name       string
+	Categories []Category
 }
 
 type Category struct {
-    ID string
-    Name string
-    Items []BudgetItem
-    BudgetID string
+	ID       string
+	Name     string
+	Items    []BudgetItem
+	BudgetID string
 }
 
 type BudgetItem struct {
-    ID string
-    Name string
-    Amount float64
-    Remaining float64
-    BudgetID string
+	ID         string
+	Name       string
+	Amount     float64
+	Remaining  float64
+	CategoryID string
 }
 
-func init() {
-    income := []BudgetItem{
-        {
-            ID: "BI1",
-            Name: "Paycheck 1",
-            Amount: 10000,
-            Remaining: 0,
-            BudgetID: "B1",
-        },
-        {
-            ID: "BI2",
-            Name: "Paycheck 2",
-            Amount: 10000,
-            Remaining: 0,
-            BudgetID: "B1",
-        },
-    }
+func dbLoadBudget(budgetID string) Budget {
+	budgetRow := db.QueryRow(`select Budget.name from Budget where Budget.budgetId = ?`, budgetID)
 
-    housing := []BudgetItem{
-        {
-            ID: "BI1",
-            Name: "Mortgage",
-            Amount: 3000,
-            Remaining: 3000,
-            BudgetID: "B1",
-        },
-    }
+	var budget Budget
+	budget.ID = budgetID
+	err := budgetRow.Scan(&budget.Name)
+	if err != nil {
+		// TODO - something better here?
+		return Budget{}
+	}
 
-    categories := []Category{
-        {
-            ID: "C1",
-            Name: "Income",
-            Items: income,
-            BudgetID: "B1",
-        },
-        {
-            ID: "C2",
-            Name: "Housing",
-            Items: housing,
-            BudgetID: "B1",
-        },
-    }
+	categoryRows, err := db.Query(`select Category.categoryId, Category.name from Category where Category.budgetId = ?`, budgetID)
+	if err != nil {
+		// TODO - something better here?
+		return Budget{}
+	}
+	for categoryRows.Next() {
+		var category Category
+		category.BudgetID = budgetID
+		err = categoryRows.Scan(&category.ID, &category.Name)
+		if err != nil {
+			// TODO - something better here?
+			return Budget{}
+		}
 
-    data = Budget{
-        ID: "B1",
-        Name: "October",
-        Categories: categories,
-    }
+		budgetItemRows, err := db.Query(`select BudgetItem.itemID, BudgetItem.name, BudgetItem.amount, BudgetItem.remaining from BudgetItem where BudgetItem.categoryId = ?`, category.ID)
+		if err != nil {
+			// TODO - something better here?
+			return Budget{}
+		}
+
+		for budgetItemRows.Next() {
+			var budgetItem BudgetItem
+			budgetItem.CategoryID = category.ID
+			err = budgetItemRows.Scan(&budgetItem.ID, &budgetItem.Name, &budgetItem.Amount, &budgetItem.Remaining)
+			if err != nil {
+				// TODO - something better here?
+				return Budget{}
+			}
+			category.Items = append(category.Items, budgetItem)
+		}
+		budget.Categories = append(budget.Categories, category)
+	}
+
+	return budget
 }

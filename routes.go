@@ -6,27 +6,26 @@ import (
 )
 
 type route struct {
-    method string
-    regex *regexp.Regexp
-    handler http.HandlerFunc
+	method  string
+	regex   *regexp.Regexp
+	handler http.HandlerFunc
 }
 
 var routes = []route{
-    newRoute("GET", "/static/css/output.css", serveCSS),
-    newRoute("GET", "/budget/([^/]+)", budget),
+	newRoute("GET", "/static/css/output.css", serveCSS),
+	newRoute("GET", "/budget/([^/]+)", budget),
 }
 
 func newRoute(method, pattern string, handler http.HandlerFunc) route {
-    return route{method, regexp.MustCompile(pattern), handler}
+	return route{method, regexp.MustCompile(pattern), handler}
 }
 
-func serveCSS (w http.ResponseWriter, req *http.Request) {
-    handler := http.FileServer(http.FS(css))
-    handler.ServeHTTP(w, req)
+func serveCSS(w http.ResponseWriter, req *http.Request) {
+	handler := http.FileServer(http.FS(css))
+	handler.ServeHTTP(w, req)
 }
-
 
 func budget(w http.ResponseWriter, req *http.Request) {
-    html.ExecuteTemplate(w, "budget.html", data)
+	budget := dbLoadBudget("B1")
+	html.ExecuteTemplate(w, "budget.html", budget)
 }
-
