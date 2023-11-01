@@ -26,6 +26,7 @@ func serveCSS(w http.ResponseWriter, req *http.Request) {
 }
 
 func budget(w http.ResponseWriter, req *http.Request) {
-	budget := dbLoadBudget("B1")
+    budgetId := req.Context().Value(ctxKey{}).([]string)[0]
+	budget := dbLoadBudget(budgetId)
 	html.ExecuteTemplate(w, "budget.html", budget)
 }
